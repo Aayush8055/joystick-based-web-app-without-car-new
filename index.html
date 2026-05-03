@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>CyberDrive | Virtual Joystick Controller</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>⚡ CYBERDRIVE JOYSTICK ⚡</h1>
+            <p>real-time robot · car · vehicle telecontrol</p>
+        </div>
+
+        <div class="dashboard">
+            <div class="joystick-panel">
+                <div class="joystick-title">
+                    <h3>🕹️ 3D Vector Joystick</h3>
+                    <div class="connection-badge" id="connBadge">● CONNECTING</div>
+                </div>
+                <div class="joy-wrapper">
+                    <canvas id="joystickCanvas" width="400" height="400"></canvas>
+                </div>
+                <div class="joy-hint">
+                    <span>⇦ drag / touch to move ⇨</span>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <div class="status-card">
+                    <div class="led-status">
+                        <div class="led" id="ledIndicator"></div>
+                        <span class="status-text" id="wsStatusMsg">WebSocket: disconnected</span>
+                    </div>
+                    <div class="coord-data">
+                        <div class="coord-row"><span>🎮 X (horizontal):</span><span id="joyXVal">0.00</span></div>
+                        <div class="coord-row"><span>⬆️ Y (vertical):</span><span id="joyYVal">0.00</span></div>
+                        <div class="coord-row"><span>📐 angle / magnitude:</span><span id="angleMag">0° | 0%</span></div>
+                    </div>
+                    <div class="coord-row"><span>🚗 command sent:</span><span id="lastCmdField">—</span></div>
+                </div>
+
+                <div class="command-history">
+                    <h4>📡 LIVE COMMAND FEED</h4>
+                    <div class="cmd-list" id="cmdLog">
+                        <div>⚡ ready to control real robot</div>
+                    </div>
+                    <button id="emergencyStopBtn" class="emergency">🛑 EMERGENCY STOP (CUTOFF)</button>
+                    <button id="reconnectBtn">⟳ Reconnect WebSocket</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            * Joystick sends JSON over WebSocket | Compatible with ROS, motor drivers & custom robots
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
