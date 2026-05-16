@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>CyberDrive | Virtual Joystick Controller</title>
+    <title>CyberDrive | Virtual Car Simulator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
         <div class="header">
-            <h1>⚡ CYBERDRIVE JOYSTICK ⚡</h1>
-            <p>real-time robot · car · vehicle telecontrol</p>
+            <h1>⚡ CYBERDRIVE SIMULATOR ⚡</h1>
+            <p>Virtual Car | Real-time Joystick Control</p>
         </div>
 
         <div class="dashboard">
             <div class="joystick-panel">
                 <div class="joystick-title">
-                    <h3>🕹️ 3D Vector Joystick</h3>
+                    <h3>🕹️ Virtual Joystick</h3>
                     <div class="connection-badge" id="connBadge">● CONNECTING</div>
                 </div>
                 <div class="joy-wrapper">
                     <canvas id="joystickCanvas" width="400" height="400"></canvas>
                 </div>
                 <div class="joy-hint">
-                    <span>⇦ drag / touch to move ⇨</span>
+                    <span>👆 Drag to Control Virtual Car</span>
                 </div>
             </div>
 
@@ -34,25 +34,54 @@
                         <span class="status-text" id="wsStatusMsg">WebSocket: disconnected</span>
                     </div>
                     <div class="coord-data">
-                        <div class="coord-row"><span>🎮 X (horizontal):</span><span id="joyXVal">0.00</span></div>
-                        <div class="coord-row"><span>⬆️ Y (vertical):</span><span id="joyYVal">0.00</span></div>
-                        <div class="coord-row"><span>📐 angle / magnitude:</span><span id="angleMag">0° | 0%</span></div>
+                        <div class="coord-row"><span>🎮 X (Left/Right):</span><span id="joyXVal">0.00</span></div>
+                        <div class="coord-row"><span>⬆️ Y (Forward/Back):</span><span id="joyYVal">0.00</span></div>
+                        <div class="coord-row"><span>📐 Angle / Power:</span><span id="angleMag">0° | 0%</span></div>
                     </div>
-                    <div class="coord-row"><span>🚗 command sent:</span><span id="lastCmdField">—</span></div>
+                    <div class="coord-row"><span>🚗 Car State:</span><span id="carState">STOP</span></div>
                 </div>
 
                 <div class="command-history">
-                    <h4>📡 LIVE COMMAND FEED</h4>
+                    <h4>📡 Live Command Feed</h4>
                     <div class="cmd-list" id="cmdLog">
-                        <div>⚡ ready to control real robot</div>
+                        <div>⚡ Virtual Car Ready!</div>
                     </div>
-                    <button id="emergencyStopBtn" class="emergency">🛑 EMERGENCY STOP (CUTOFF)</button>
-                    <button id="reconnectBtn">⟳ Reconnect WebSocket</button>
+                    <button id="emergencyStopBtn" class="emergency">🛑 EMERGENCY STOP</button>
+                    <button id="reconnectBtn">⟳ Reconnect</button>
                 </div>
             </div>
         </div>
+
+        <!-- Virtual Car Simulator -->
+        <div class="simulator-panel">
+            <div class="simulator-title">
+                🚗 VIRTUAL CAR SIMULATOR
+                <span style="font-size: 12px; color:#ffaa44;">(No robot needed)</span>
+            </div>
+            <div class="car-canvas-container">
+                <canvas id="carCanvas" width="600" height="400"></canvas>
+            </div>
+            <div class="car-stats">
+                <div class="stat-card">
+                    <div class="stat-label">CAR POSITION X</div>
+                    <div class="stat-value" id="carPosX">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">CAR POSITION Y</div>
+                    <div class="stat-value" id="carPosY">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">CAR DIRECTION</div>
+                    <div class="stat-value" id="carDir">↑</div>
+                </div>
+            </div>
+            <div class="mode-buttons">
+                <button id="resetCarBtn" class="mode-btn">🔄 Reset Car Position</button>
+            </div>
+        </div>
+
         <div class="footer">
-            * Joystick sends JSON over WebSocket | Compatible with ROS, motor drivers & custom robots
+            * Drag joystick → Virtual car moves | Simulation Mode | No hardware needed!
         </div>
     </div>
 

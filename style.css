@@ -7,7 +7,7 @@
 
 body {
     background: radial-gradient(circle at 20% 30%, #0a0f1e, #03060c);
-    font-family: 'Segoe UI', 'Poppins', 'Orbitron', system-ui, -apple-system, 'Inter', sans-serif;
+    font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -33,12 +33,10 @@ body {
     background-clip: text;
     color: transparent;
     letter-spacing: 2px;
-    text-shadow: 0 0 8px rgba(58,134,255,0.3);
 }
 
 .header p {
     color: #8e9aaf;
-    font-weight: 500;
     margin-top: 8px;
 }
 
@@ -49,14 +47,23 @@ body {
     align-items: start;
 }
 
+@media (max-width: 780px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .header h1 {
+        font-size: 1.8rem;
+    }
+}
+
 .joystick-panel {
     background: rgba(12, 20, 30, 0.65);
     backdrop-filter: blur(12px);
     border-radius: 48px;
     padding: 30px 20px;
     border: 1px solid rgba(72, 187, 255, 0.25);
-    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
-    transition: all 0.2s;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
 }
 
 .joystick-title {
@@ -70,7 +77,6 @@ body {
 .joystick-title h3 {
     color: #ccdeff;
     font-weight: 500;
-    letter-spacing: 1px;
 }
 
 .connection-badge {
@@ -93,7 +99,7 @@ body {
 canvas {
     background: radial-gradient(circle at 30% 30%, #1e2a3a, #0b1018);
     border-radius: 50%;
-    box-shadow: 0 0 0 3px rgba(58,134,255,0.3), 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.3);
+    box-shadow: 0 0 0 3px rgba(58,134,255,0.3), 0 15px 35px rgba(0,0,0,0.5);
     width: 100%;
     max-width: 400px;
     height: auto;
@@ -125,7 +131,6 @@ canvas:active {
     border-radius: 32px;
     padding: 22px 18px;
     border: 1px solid rgba(72, 187, 255, 0.3);
-    box-shadow: 0 20px 30px -10px black;
 }
 
 .status-card {
@@ -162,7 +167,7 @@ canvas:active {
 }
 
 .coord-data {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: monospace;
     background: #00000055;
     padding: 12px;
     border-radius: 20px;
@@ -184,7 +189,6 @@ canvas:active {
 .command-history h4 {
     font-size: 0.9rem;
     color: #7f8fa4;
-    letter-spacing: 1px;
     margin-bottom: 10px;
 }
 
@@ -226,14 +230,11 @@ button:hover {
 
 .emergency {
     background: #b91c1c;
-    color: white;
     box-shadow: 0 0 12px red;
-    margin-top: 20px;
 }
 
 .emergency:hover {
     background: #ff2e2e;
-    border-color: white;
 }
 
 .footer {
@@ -243,15 +244,83 @@ button:hover {
     color: #4c6085;
 }
 
-@media (max-width: 780px) {
-    .dashboard {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-    .joystick-panel {
-        padding: 20px;
-    }
-    .header h1 {
-        font-size: 1.8rem;
-    }
+.simulator-panel {
+    background: rgba(8, 14, 22, 0.8);
+    backdrop-filter: blur(12px);
+    border-radius: 32px;
+    padding: 22px;
+    margin-top: 20px;
+    border: 1px solid rgba(72, 187, 255, 0.3);
+}
+
+.simulator-title {
+    color: #aaffff;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.car-canvas-container {
+    background: #0a101c;
+    border-radius: 24px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid #2a3a55;
+}
+
+#carCanvas {
+    background: #1a2a3a;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    cursor: pointer;
+}
+
+.car-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.stat-card {
+    background: #03060c;
+    border-radius: 16px;
+    padding: 12px;
+    text-align: center;
+}
+
+.stat-label {
+    color: #7f8fa4;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    color: #32cdff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.mode-btn {
+    background: #1f2c44;
+    padding: 8px;
+    font-size: 0.8rem;
+    margin-top: 0;
+}
+
+.mode-btn.active {
+    background: #3a86ff;
+    border-color: #aaffff;
 }
